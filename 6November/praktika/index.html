@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      fetch("https://northwind.vercel.app/api/categories")
+        .then((res) => res.json())
+        .then((data) =>
+          data.forEach((element) => {
+            creatProduct(element.id, element.description, element.name);
+          })
+        );
+
+      function creatProduct(id, description, name) {
+        const card = document.createElement("div");
+        const cardId = document.createElement("a");
+        const cardDescription = document.createElement("a");
+        const cardName = document.createElement("a");
+        cardId.setAttribute("href","./product.html#"+id)
+        card.style.border = "1px solid black";
+        card.style.width = "100px";
+        card.style.height = "100px";
+        card.style.backgroundColor = "gray";
+        card.style.padding = "30px";
+        card.style.borderRadius = "8px";
+        document.body.style.display = "flex";
+        document.body.style.flexWrap = "wrap";
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+        document.body.style.gap = "10px";
+        card.style.width = "100px";
+
+        document.body.style.justifyContent = "center";
+        document.body.style.height = "50vh";
+        document.body.style.alignItems = "center";
+        card.setAttribute("href", "./product.html");
+        cardId.textContent = id;
+        cardDescription.textContent = description;
+        cardName.textContent = name;
+        card.append(cardId, cardDescription, cardName);
+        document.body.appendChild(card);
+      }
+    </script>
+  </body>
+</html>

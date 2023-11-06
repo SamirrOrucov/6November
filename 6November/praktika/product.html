@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+        <h4></h4>
+        <h2></h2>
+        <p></p>
+        <a href="./index.html">back</a>
+    </div>
+    <script>
+      let hash = window.location.hash;
+      hash = hash.substring(1);
+      console.log(hash)
+      fetch(`https://northwind.vercel.app/api/categories/${hash}`)
+        .then((res) => res.json())
+        .then((data) =>
+         
+            creatProduct(data.id, data.description, data.name)
+         
+        );
+      function creatProduct(id, description, name) {
+       
+        let prodId=document.querySelector("h4")
+        let prodDesc=document.querySelector("h2")
+        let prodName=document.querySelector("p")
+
+        
+        prodId.textContent = id;
+        prodDesc.textContent = description;
+        prodName.textContent = name;
+        // card.append(cardId, cardDescription, cardName);
+        // document.body.appendChild(card);
+      }
+    </script>
+  </body>
+</html>
